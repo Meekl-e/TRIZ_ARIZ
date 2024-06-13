@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <table>
+   <tr>
+       <td>
+           {% if sistem == ""  :%}
+       <form action="" method="post">
+           <label><b>Система</b></label>
+            <br>
+           <input type="text" name="sistem">
+           <input class="btn btn-primary" type="submit">
+       </form>
+           {% else %}
+           <label><b>Система</b></label>
+            <br>
+           <i>{{sistem}}</i>
+           <form action="{{ url_for('sistem') }}" method="post"><button type="submit">🔧</button></form>
+           {% endif %}
+       </td>
+   </tr>
+    <tr>
+        {%for sv in svoistva%}
+        <td >
+          <div class="card">
+  <div class="card-body">
+    {{sv}}
+  </div>
+</div>
+        </td>
+        {%endfor%}
+        <td>
+             {% if change == "" or  change == None :%}
+            <form action="" method="post">
+           <label><b>Изменение</b></label>
+                <br>
+           <input type="text" name="change">
+           <input class="btn btn-primary" type="submit">
+       </form>
+            {% else %}
+           <label><b>Изменение</b></label>
+            <br>
+           <i>{{change}}</i><form action="{{ url_for('change') }}" method="post"><button type="submit">🔧</button></form>
+           {% endif %}
+        </td>
+    </tr>
+    <tr>
+        {%for role, sv in roles%}
+        <td>
+            <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                {{role}}
+            </div>
+                <ul class="list-group list-group-flush">
+              {%for s in sv%}
+              <li class="list-group-item">{{s}}</li>
+                {%endfor%}
+                </ul>
+                </div>
+
+        </td>
+        {%endfor%}
+    </tr>
+
+    <tr>
+        <td>⬆️<b>Роли</b>⬆️</td>
+        <td></td>
+        <td>
+            {% if scenario == "" or  scenario == None :%}
+            <form  action="" method="post">
+           <label><b>Сценарий</b></label>
+                <br>
+           <input type="text" name="scenario">
+           <input class="btn btn-primary" type="submit">
+                
+       </form>
+            {% else %}
+           <label><b>Сценарий</b></label>
+            <br>
+           <i>{{scenario}}</i>
+            <form action="{{ url_for('scenario') }}" method="post"><button type="submit">🔧</button></form>
+           {% endif %}
+        </td>
+    </tr>
+
+        </table>
+
+
+
+    <div class="chat-box card">
+        <div class="card-header" style="color:white">Чат</div>
+        <form  action="{{ url_for('reset') }}" method="post"><button  class="btn btn-danger" type="submit">Сброс</button></form>
+        <form class="chat input-group mb-3" action="" method="post" >
+           <input type="text" class="form-control"  placeholder="Введите сообщение..." name="msg" aria-describedby="button-addon2" >
+           <input class="btn btn-primary" type="submit">
+       </form>
+        <div class="message-box">
+
+        {%for m in messages%}
+        <div class="card mb-3" style="max-width: 90%;">
+            <div class="card-body">
+         <p class="card-text">{{m}}</p>
+        </div>
+
+        </div>
+        {%endfor%}
+
+            </div>
+
+
+
+    </div>
+
+
+{% endblock content %}

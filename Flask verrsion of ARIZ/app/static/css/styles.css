@@ -1,0 +1,23 @@
+
+.chat-box {
+background-color:#A79FFF;
+height: 60%;
+max-height: 720px;
+
+}
+.message-box{
+height: 600px;
+
+float:right;
+}
+
+.chat{
+float:right;
+background-color:#A79FFF;
+
+width:100%
+}
+.message{
+background-color:white;
+
+}
